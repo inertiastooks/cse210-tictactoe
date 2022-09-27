@@ -57,7 +57,12 @@
     /// <returns>True if the game is over</returns>
     static bool IsGameOver(List<string> board)
     {
-        return false;
+        if(IsWinner(board, "x") || IsWinner(board, "o") || IsTie(board)) {
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /// <summary>Determines if the provided player has a tic tac toe.</summary>
@@ -66,6 +71,38 @@
     /// <returns></returns>
     static bool IsWinner(List<string> board, string player)
     {
+        ///1,2,3
+        ///4,5,6
+        ///7,8,9
+        ///1,4,7
+        ///2,5,8
+        ///3,6,9
+        ///1,5,9
+        ///3,5,7
+        if(board[1] == player && board[2] == player && board[3] == player){
+            return true;
+        }
+        else if(board[4] == player && board[5] == player && board[6] == player){
+            return true;
+        }
+        else if(board[7] == player && board[8] == player && board[9] == player){
+            return true;
+        }
+        else if(board[1] == player && board[5] == player && board[9] == player){
+            return true;
+        }
+        else if(board[3] == player && board[5] == player && board[7] == player){
+            return true;
+        }
+        else if(board[1] == player && board[4] == player && board[7] == player){
+            return true;
+        }
+        else if(board[2] == player && board[5] == player && board[8] == player){
+            return true;
+        }
+        else if(board[3] == player && board[5] == player && board[9] == player){
+            return true;
+        }
         return false;
     }
 
@@ -76,13 +113,16 @@
     {
         return false;
     }
-
     /// <summary>Cycles through the players (from x to o and o to x)</summary>
     /// <param name="currentPlayer">The current players sign (x or o)</param>
     /// <returns>The next players sign (x or o)</returns>
-    static string GetNextPlayer(string currentPlayer)
-    {
-        return "x";
+    static string GetNextPlayer(string currentPlayer){
+        if (currentPlayer == "x"){
+            return "o";
+        }
+        else{
+            return "x";
+        }
     }
 
     /// <summary>Gets the 1-based spot number associated with the user's choice.</summary>
